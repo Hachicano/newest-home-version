@@ -354,6 +354,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popCount: 0
+  selfPrefab: {fileID: 2675452979699100320}
 --- !u!1 &4976397974090546372
 GameObject:
   m_ObjectHideFlags: 0

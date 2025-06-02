@@ -34,6 +34,12 @@ public class ItemObject : MonoBehaviour
         Debug.Log("Picked up item " + itemData.itemName);
         AudioManager.instance.PlayerSFX(17, transform);  // sfx_item pickup
         Inventory.instance.AddItem(itemData);
-        Destroy(gameObject);
+        ObjectPoolManager.instance.returnToPool(gameObject);
+        // Destroy(gameObject);
+    }
+
+    public void resetItem()
+    {
+        itemData = null;
     }
 }

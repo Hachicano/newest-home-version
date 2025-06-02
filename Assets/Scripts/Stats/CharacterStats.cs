@@ -370,7 +370,8 @@ public class CharacterStats : MonoBehaviour
 
         if (closestEnemy != null)
         {
-            GameObject newShockStrike = Instantiate(shockStrikePrefab, transform.position, Quaternion.identity);
+            //GameObject newShockStrike = Instantiate(shockStrikePrefab, transform.position, Quaternion.identity);
+            GameObject newShockStrike = ObjectPoolManager.instance.getPooledObject(shockStrikePrefab, transform.position, Quaternion.identity);
             newShockStrike.GetComponent<ShockStrikeController>().Setup(shockDamge, closestEnemy.GetComponent<CharacterStats>());
         }
     }

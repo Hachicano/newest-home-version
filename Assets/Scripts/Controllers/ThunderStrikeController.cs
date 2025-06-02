@@ -21,7 +21,7 @@ public class ThunderStrikeController : PooledFX
     protected override void Awake()
     {
         base.Awake();
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
         initialAnimation = "thunderStrike_idle";
 
     }

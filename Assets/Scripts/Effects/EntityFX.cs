@@ -81,7 +81,8 @@ public class EntityFX : MonoBehaviour
         float yOffset = Random.Range(1.2f, 2.2f);
         Vector3 positionOffset = new Vector3(xOffset, yOffset, 0);
 
-        GameObject newText = Instantiate(popUpTextPrefab, transform.position + positionOffset, Quaternion.identity);
+        // GameObject newText = Instantiate(popUpTextPrefab, transform.position + positionOffset, Quaternion.identity);
+        GameObject newText = ObjectPoolManager.instance.getPooledObject(popUpTextPrefab, transform.position + positionOffset, Quaternion.identity);
 
         newText.GetComponent<TextMeshPro>().text = _text;
     }
@@ -211,11 +212,13 @@ public class EntityFX : MonoBehaviour
             hitFXRotation = new Vector3(0, yRotation, zRotation);
         }
 
-        GameObject newHitFX = Instantiate(hitFXPrefab, _target.position + new Vector3(xOffset, yOffset), Quaternion.identity);
+        GameObject newHitFX = ObjectPoolManager.instance.getPooledObject(hitFXPrefab, _target.position + new Vector3(xOffset, yOffset), Quaternion.identity);
+        //GameObject newHitFX = Instantiate(hitFXPrefab, _target.position + new Vector3(xOffset, yOffset), Quaternion.identity);
         //GameObject newHitFX = Instantiate(hitFXPrefab, _target.position + new Vector3(xOffset, yOffset), Quaternion.identity, _target); // critical hit fx will follow the target
         newHitFX.transform.Rotate(hitFXRotation);
 
-        Destroy(newHitFX, .5f);
+        StartCoroutine(returnPoolAfterDelay(0.5f, newHitFX));
+        //Destroy(newHitFX, .5f);
     }
     public void PlayDustFX()
     {
@@ -223,5 +226,11 @@ public class EntityFX : MonoBehaviour
         {
             dustFX.Play();
         }
+    }
+    IEnumerator returnPoolAfterDelay(float delay, GameObject gb)
+    {
+        // µÈ´ý0.5Ãë
+        yield return new WaitForSeconds(delay);
+        ObjectPoolManager.instance.returnToPool(gb);
     }
 }

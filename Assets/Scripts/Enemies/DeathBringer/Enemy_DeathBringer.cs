@@ -115,7 +115,9 @@ public class Enemy_DeathBringer : Enemy
         if (player.rb.velocity.x != 0)
             xOffset = player.facingDir * castOffset.x;
         Vector3 castPosition = new Vector3(player.transform.position.x + xOffset, player.transform.position.y + castOffset.y);
-        GameObject newcast = Instantiate(castPrefab, castPosition, Quaternion.identity);
+
+        GameObject newcast = ObjectPoolManager.instance.getPooledObject(castPrefab, castPosition, Quaternion.identity);
+        // GameObject newcast = Instantiate(castPrefab, castPosition, Quaternion.identity);
         newcast.GetComponent<DeathBringerCastController>().SetUpCast(stats);
     }
 }

@@ -6,8 +6,8 @@ using UnityEngine.UIElements;
 public class ObjectPoolManager : MonoBehaviour
 {
     public static ObjectPoolManager instance;
-    public Dictionary<GameObject, List<GameObject>> objectPool = new Dictionary<GameObject, List<GameObject>>();
-    [SerializeField] private int maxPoolSize = 10; // 对象池最大容量为 10(暂定)
+    [SerializeField] public Dictionary<GameObject, List<GameObject>> objectPool = new Dictionary<GameObject, List<GameObject>>();
+    [SerializeField] private int maxPoolSize = 10; // 对象池最大容量为 20(暂定)
 
     // 需要手动添加到对象池的对象数组
     public GameObject[] initialObjects;
@@ -36,8 +36,6 @@ public class ObjectPoolManager : MonoBehaviour
             {
                 if (obj != null)
                 {
-                    // 这里假设你有一个方法可以获取对象对应的预制体
-                    // 实际使用中，你可能需要根据具体情况修改获取预制体的逻辑
                     GameObject prefab = obj.GetComponent<Enemy>().EnemySelfPrefab;
                     if (prefab != null)
                     {
@@ -53,6 +51,7 @@ public class ObjectPoolManager : MonoBehaviour
         if (!objectPool.ContainsKey(_prefab))
         {
             objectPool[_prefab] = new List<GameObject>();
+            Debug.Log("创建List！" +  _prefab);
         }
 
         List<GameObject> pool = objectPool[_prefab];
@@ -77,21 +76,22 @@ public class ObjectPoolManager : MonoBehaviour
             objToReuse.SetActive(true);
             objToReuse.transform.position = _position;
             objToReuse.transform.rotation = _rotation;
-            objToReuse.GetComponent<ObjectSpawner>().initialize();//预制体记得挂载一下这个脚本
+            objToReuse.GetComponent<ObjectSpawner>().initialize();// 预制体记得挂载一下这个脚本
             Debug.Log("启用了这个" + objToReuse.gameObject.name);
             return objToReuse;
         }
-
+        /*
         if (pool.Count >= maxPoolSize)
         {
             // 对象池满，删除 popCount 最小的对象
             pool.Remove(objToReuse);
             Destroy(objToReuse);
             Debug.Log("删除了这个: " + objToReuse.gameObject.name);
-        }
+        }*/
 
         // 创建新对象
         GameObject newObj = Instantiate(_prefab, _position, _rotation);
+        newObj.GetComponent<ObjectSpawner>().selfPrefab = _prefab;
         Debug.Log("创建了这个" + newObj.gameObject.name);
         pool.Add(newObj);
         return newObj;
@@ -143,7 +143,25 @@ public class ObjectPoolManager : MonoBehaviour
         ObjectSpawner spawner = obj.GetComponent<ObjectSpawner>();
         if (spawner != null)
         {
-            obj.SetActive(false);
+            if (!objectPool.ContainsKey(spawner.selfPrefab))
+            {
+                Debug.LogError($"对象池中不存在预制体键: {spawner.selfPrefab.name}");
+                Destroy(obj);
+                return;
+            }
+
+            List<GameObject> pool = objectPool[spawner.selfPrefab];
+            Debug.Log(obj.gameObject.name + "对象池数量：" + pool.Count);
+
+            if (pool.Count >= maxPoolSize)
+            {
+                // 对象池满，删除
+                pool.Remove(obj);
+                Destroy(obj);
+                Debug.Log("删除了这个: " + obj.gameObject.name);
+            }
+            else
+                obj.SetActive(false);
         }
     }
 }

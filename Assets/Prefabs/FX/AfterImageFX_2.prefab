@@ -112,3 +112,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popCount: 0
+  selfPrefab: {fileID: 6670661536149561514}

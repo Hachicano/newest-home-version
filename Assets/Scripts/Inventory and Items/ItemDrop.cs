@@ -33,7 +33,8 @@ public class ItemDrop : MonoBehaviour
 
     protected void DropItem(ItemData _itemData)
     {
-        GameObject newDrop = Instantiate(dropPrefab, transform.position, Quaternion.identity);
+        // GameObject newDrop = Instantiate(dropPrefab, transform.position, Quaternion.identity);
+        GameObject newDrop = ObjectPoolManager.instance.getPooledObject(dropPrefab, transform.position, Quaternion.identity);
 
         Vector2 randomVelocity = new Vector2(Random.Range(-5, 5), Random.Range(15, 20));
 

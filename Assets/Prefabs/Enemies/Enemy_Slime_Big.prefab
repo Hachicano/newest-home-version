@@ -809,6 +809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popCount: 0
+  selfPrefab: {fileID: 6819551384977802647}
 --- !u!1 &6849588653957668045
 GameObject:
   m_ObjectHideFlags: 0
