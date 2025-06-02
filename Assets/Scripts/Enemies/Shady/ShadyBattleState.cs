@@ -6,7 +6,7 @@ public class ShadyBattleState : EnemyState
     private Transform player;
     private int moveDir;
 
-    private float giveupDistance = 7;
+    private float giveupDistance = 5;
 
     public ShadyBattleState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Enemy_Shady _enemy) : base(_enemyBase, _stateMachine, _animBoolName)
     {

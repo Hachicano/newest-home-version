@@ -283,7 +283,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: []
   phsicalDamage:
-    baseValue: 75
+    baseValue: 250
     modifiers: []
   critChance:
     baseValue: 0

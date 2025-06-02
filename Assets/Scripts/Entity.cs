@@ -85,6 +85,7 @@ public class Entity : MonoBehaviour
         isKnocked = false;
 
         SetupZeroKnockbackPower();
+        setZeroVelocity();
     }
 
     protected virtual void SetupZeroKnockbackPower()
