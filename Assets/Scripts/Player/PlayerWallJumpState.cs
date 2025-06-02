@@ -14,6 +14,7 @@ public class PlayerWallJumpState : PlayerState
     {
         base.SetupTransitions();
         this.transitions.Add(new Transition(player.airborneState, () => stateTimer < 0));
+        this.transitions.Add(new Transition(player.wallSlideState, () => player.IsWallDetected()));
         this.transitions.Add(new Transition(player.idleState, () => player.IsGroundDetected()));
     }
 
@@ -31,6 +32,7 @@ public class PlayerWallJumpState : PlayerState
     public override void Exit()
     {
         base.Exit();
+        stateTimer = 0;
     }
 
     public override void Update()

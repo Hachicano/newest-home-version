@@ -78,7 +78,7 @@ public class EntityFX : MonoBehaviour
     public void CreatePopUpText(string _text)
     {
         float xOffset = Random.Range(-1, 1);
-        float yOffset = Random.Range(1, 2);
+        float yOffset = Random.Range(1.2f, 2.2f);
         Vector3 positionOffset = new Vector3(xOffset, yOffset, 0);
 
         GameObject newText = Instantiate(popUpTextPrefab, transform.position + positionOffset, Quaternion.identity);
