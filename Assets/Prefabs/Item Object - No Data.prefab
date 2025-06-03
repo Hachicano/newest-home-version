@@ -192,7 +192,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 0}
-  protectPickupTime: 3
+  protectPickupTime: 1.5
+  canPick: 0
 --- !u!61 &1426672841864337755
 BoxCollider2D:
   m_ObjectHideFlags: 0
