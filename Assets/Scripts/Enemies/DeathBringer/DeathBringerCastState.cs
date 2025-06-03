@@ -9,6 +9,7 @@ public class DeathBringerCastState : EnemyState
 
     private int amountOfCasts;
     private float castTimer;
+    [SerializeField] private int castSfxIndex = 18;
 
     public DeathBringerCastState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Enemy_DeathBringer _enemy) : base(_enemyBase, _stateMachine, _animBoolName)
     {
@@ -20,6 +21,7 @@ public class DeathBringerCastState : EnemyState
         base.Enter();
 
         amountOfCasts = enemy.amountOfCasts;
+        AudioManager.instance.PlayerSFX(castSfxIndex, null);
         castTimer = .5f;
     }
 

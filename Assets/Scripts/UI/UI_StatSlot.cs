@@ -39,7 +39,6 @@ public class UI_StatSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         {
             statValueText.text = playerStats.GetStat(statType).GetValue().ToString();
 
-
             if (statType == StatType.maxHealth)
                 statValueText.text = Mathf.Round(playerStats.GetTotalMaxHealthValue()).ToString();
             if (statType == StatType.phsicalDamage)
@@ -64,5 +63,10 @@ public class UI_StatSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public void OnPointerExit(PointerEventData eventData)
     {
         ui.statToolTip.HideStatToolTip();
+    }
+
+    private void OnEnable()
+    {
+        UpdateStatValueUI();
     }
 }

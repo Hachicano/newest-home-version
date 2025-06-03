@@ -82,7 +82,7 @@ public class UI_SkillTreeSlot : MonoBehaviour, IPointerEnterHandler, IPointerExi
                 }
             }
 
-            PlayerManager.instance.ReturnMoney(skillCost);
+            // PlayerManager.instance.ReturnMoney(skillCost);
             unlocked = false;
             skillImage.color = lockedSkillColor;
         }
@@ -119,5 +119,11 @@ public class UI_SkillTreeSlot : MonoBehaviour, IPointerEnterHandler, IPointerExi
         {
             _data.skillTree.Add(skillName, unlocked);
         }
+    }
+
+    private void OnEnable()
+    {
+        if (unlocked)
+            skillImage.color = Color.white;
     }
 }

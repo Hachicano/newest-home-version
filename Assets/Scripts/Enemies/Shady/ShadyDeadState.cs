@@ -4,6 +4,7 @@
 public class ShadyDeadState : EnemyState
 {
     protected Enemy_Shady enemy;
+    [SerializeField] private int explodeSfxIndex = 6;
 
     public ShadyDeadState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Enemy_Shady _enemy) : base(_enemyBase, _stateMachine, _animBoolName)
     {
@@ -13,6 +14,7 @@ public class ShadyDeadState : EnemyState
     public override void Enter()
     {
         base.Enter();
+        AudioManager.instance.PlayerSFX(explodeSfxIndex, null);
     }
 
     public override void Update()

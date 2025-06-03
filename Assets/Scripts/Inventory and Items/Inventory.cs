@@ -35,6 +35,7 @@ public class Inventory : MonoBehaviour, ISaveManager
     private float lastTimeUsedFlask;
     private float lastTimeUsedArmor;
     public float flaskCooldown { get; private set; }
+    public bool canUseFlask;
     private float armorCooldown = 0;
 
     [Header("Data base")]
@@ -333,7 +334,7 @@ public class Inventory : MonoBehaviour, ISaveManager
         if (currentFlask == null)
             return;
 
-        bool canUseFlask = Time.time > lastTimeUsedFlask + flaskCooldown;
+        canUseFlask = !isFlaskCooldown();
         // check if can use
         // use flask
         if (canUseFlask)
@@ -344,6 +345,14 @@ public class Inventory : MonoBehaviour, ISaveManager
         }
         else
             Debug.Log("Flask on Cooldown");
+    }
+
+    public bool isFlaskCooldown()
+    {
+        if (Time.time > lastTimeUsedFlask + flaskCooldown) // ÄÜÓÃ
+            return false;
+        else
+            return true;
     }
 
     public bool canUseArmor()

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerDeadState : PlayerState
 {
+    [SerializeField] private int deathScreenSfxIndex = 11;
+
     public PlayerDeadState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
     }
@@ -21,6 +23,7 @@ public class PlayerDeadState : PlayerState
     public override void Enter()
     {
         base.Enter();
+        AudioManager.instance.PlayerSFX(deathScreenSfxIndex, null);
         GameObject.Find("Canvas").GetComponent<UI>().SwitchOnEndScreen();
     }
 

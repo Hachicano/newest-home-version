@@ -13,6 +13,7 @@ public class UI_InGame : MonoBehaviour
     [SerializeField] private Image swordImage;
     [SerializeField] private Image blackholeImage;
     [SerializeField] private Image flaskImage;
+    [SerializeField] private Image flaskDefaultImage;
 
     [Header("Souls Info")]
     [SerializeField] private TextMeshProUGUI currentSouls;
@@ -28,6 +29,12 @@ public class UI_InGame : MonoBehaviour
         }
 
         skill = SkillManager.instance;
+        if (Inventory.instance.GetEquipment(EquipmentType.Flask) != null)
+        {
+            flaskImage.sprite = Inventory.instance.GetEquipment(EquipmentType.Flask).icon;
+            flaskDefaultImage.sprite = Inventory.instance.GetEquipment(EquipmentType.Flask).icon;
+        }
+        CheckLock();
     }
 
     void Update()
@@ -52,12 +59,23 @@ public class UI_InGame : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R) && Inventory.instance.GetEquipment(EquipmentType.Flask) != null)
             SetCooldownOf(flaskImage);
 
-        CheckCooldownOf(dashImage, skill.dash.cooldown);
-        CheckCooldownOf(parryImage, skill.parry.cooldown);
-        CheckCooldownOf(crystalImage, skill.crystal.cooldown);
-        CheckCooldownOf(swordImage, skill.sword.cooldown);
-        CheckCooldownOf(blackholeImage, skill.blackhole.cooldown);
-        CheckCooldownOf(flaskImage, Inventory.instance.flaskCooldown);
+        if (skill.dash.dashUnlocked)
+            CheckCooldownOf(dashImage, skill.dash.cooldown);
+
+        if (skill.parry.parryUnlocked)
+            CheckCooldownOf(parryImage, skill.parry.cooldown);
+
+        if (skill.crystal.crystalUnlocked)
+            CheckCooldownOf(crystalImage, skill.crystal.cooldown);
+
+        if (skill.sword.swordUnlocked)
+            CheckCooldownOf(swordImage, skill.sword.cooldown);
+
+        if (Inventory.instance.GetEquipment(EquipmentType.Flask) != null)
+            CheckCooldownOf(flaskImage, Inventory.instance.flaskCooldown);
+
+        if (skill.blackhole.blackholeUnlocked && PlayerManager.instance.player.blackholeState.skillFinished)
+            CheckCooldownOf(blackholeImage, skill.blackhole.cooldown);
     }
 
     private void UpdateSoulsUI()
@@ -92,5 +110,59 @@ public class UI_InGame : MonoBehaviour
         {
             _image.fillAmount -= 1 / _cooldown * Time.deltaTime;
         }
+    }
+
+    private void SetLock(Image _image)
+    {
+        _image.fillAmount = 1;
+    }
+
+    private void SetUnlock(Image _image)
+    {
+        _image.fillAmount = 0;
+    }
+
+    private void OnEnable()
+    {
+        if (Inventory.instance.GetEquipment(EquipmentType.Flask) != null)
+        {
+            flaskImage.sprite = Inventory.instance.GetEquipment(EquipmentType.Flask).icon;
+            flaskDefaultImage.sprite = Inventory.instance.GetEquipment(EquipmentType.Flask).icon;
+        }
+
+        CheckLock();
+    }
+
+    private void CheckLock()
+    {
+        if (!skill.dash.dashUnlocked)
+            SetLock(dashImage);
+        else if (!skill.dash.isCooldown())
+            SetUnlock(dashImage);
+
+        if (!skill.parry.parryUnlocked)
+            SetLock(parryImage);
+        else if (!skill.parry.isCooldown())
+            SetUnlock(parryImage);
+
+        if (!skill.crystal.crystalUnlocked)
+            SetLock(crystalImage);
+        else if (!skill.crystal.isCooldown())
+            SetUnlock(crystalImage);
+
+        if (!skill.sword.swordUnlocked)
+            SetLock(swordImage);
+        else if (!skill.sword.isCooldown())
+            SetUnlock(swordImage);
+
+        if (Inventory.instance.GetEquipment(EquipmentType.Flask) == null)
+            SetLock(flaskImage);
+        else if (!Inventory.instance.isFlaskCooldown())
+            SetUnlock(flaskImage);
+
+        if (!skill.blackhole.blackholeUnlocked)
+            SetLock(blackholeImage);
+        else if (!skill.blackhole.isCooldown())
+            SetUnlock(blackholeImage);
     }
 }

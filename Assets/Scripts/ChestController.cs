@@ -9,11 +9,13 @@ public class ChestController : MonoBehaviour
     public bool playerInRange = false;
     [SerializeField] private GameObject dropPrefab;
     [SerializeField] private ItemData dropItemData;
+    [SerializeField] private int openSfxIndex = 21;
 
     void Update()
     {
         if (playerInRange && Input.GetKeyDown(KeyCode.E) && !isOpened)
         {
+            AudioManager.instance.PlayerSFX(openSfxIndex, null);
             OpenChest();
         }
     }

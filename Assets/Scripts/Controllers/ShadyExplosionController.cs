@@ -8,6 +8,7 @@ public class ShadyExplosionController : MonoBehaviour
     [SerializeField] private float growSpeed = 15;
     [SerializeField] private float maxSize = 8;
     [SerializeField] private float explosionRadius;
+    public Vector2 knockbacnPower = new Vector2(15, 5);
 
     private bool canGrow = true;
     private Animator anim;
@@ -44,7 +45,7 @@ public class ShadyExplosionController : MonoBehaviour
             if (hit.GetComponent<CharacterStats>() != null)
             {
                 hit.GetComponent<Entity>().SetupKnockbackDir(transform);
-                hit.GetComponent<Entity>().SetupKnockbackPower(new Vector2(10, 5));
+                hit.GetComponent<Entity>().SetupKnockbackPower(knockbacnPower);
                 founderStat.DoDamage(hit.GetComponent<CharacterStats>());
             }
         }

@@ -70,4 +70,11 @@ public class Skill : MonoBehaviour
     }
 
     public virtual float GetCooldownTimer() => cooldownTimer;
+
+    public bool isCooldown()
+    {
+        if (cooldownTimer <= 0)
+            return false;
+        else return true;
+    }
 }
