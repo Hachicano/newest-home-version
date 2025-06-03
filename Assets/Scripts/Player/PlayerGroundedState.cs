@@ -33,7 +33,7 @@ public class PlayerGroundedState : PlayerState
     {
         base.Update();
         if (Input.GetKeyDown(KeyCode.T) && player.skill.blackhole.blackholeUnlocked && player.skill.blackhole.GetCooldownTimer() > 0)
-            player.fx.CreatePopUpText("Blackhole is on cooldown");
+            player.fx.CreatePopUpText("ººƒ‹¿‰»¥÷–");
         /*
         if (Input.GetKeyDown(KeyCode.T) && player.skill.blackhole.blackholeUnlocked && player.skill.blackhole.GetCooldownTimer() <= 0)
         {

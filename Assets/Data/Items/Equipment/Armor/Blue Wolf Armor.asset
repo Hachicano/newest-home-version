@@ -13,15 +13,14 @@ MonoBehaviour:
   m_Name: Blue Wolf Armor
   m_EditorClassIdentifier: 
   itemType: 1
-  itemName: "\u84DD\u971C\u7532"
+  itemName: "\u84DD\u7532"
   icon: {fileID: 288293509, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
   itemId: a2aeae912b820b0409f22824701679f7
   dropChance: 0
   equipmentType: 1
-  itemCooldown: 10
-  itemEffects:
-  - {fileID: 11400000, guid: e3f89e4db7e322f42adc1ce766241055, type: 2}
-  strengeth: 4
+  itemCooldown: 0
+  itemEffects: []
+  strengeth: 10
   agility: 0
   intelligence: 0
   vitality: 0
@@ -29,10 +28,14 @@ MonoBehaviour:
   critChance: 0
   critPower: 0
   maxHealth: 50
-  armor: 15
+  armor: 20
   evasion: 0
   magicResistance: 5
   fireDamge: 0
   iceDamage: 0
   shockDamage: 0
-  craftingMaterials: []
+  craftingMaterials:
+  - data: {fileID: 11400000, guid: 67d31e957960d2447b59045c0809d570, type: 2}
+    stackSize: 2
+  - data: {fileID: 11400000, guid: 11d0d4c890206bf4d89aed97e5038ab0, type: 2}
+    stackSize: 8

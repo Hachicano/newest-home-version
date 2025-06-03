@@ -192,6 +192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 0}
+  protectPickupTime: 3
 --- !u!61 &1426672841864337755
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -276,3 +277,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7518c4aa850d447498135e6c50338962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  popCount: 0
+  selfPrefab: {fileID: 0}

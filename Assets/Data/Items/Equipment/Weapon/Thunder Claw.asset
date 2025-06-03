@@ -37,6 +37,6 @@ MonoBehaviour:
   shockDamage: 11
   craftingMaterials:
   - data: {fileID: 11400000, guid: 11d0d4c890206bf4d89aed97e5038ab0, type: 2}
-    stackSize: 15
+    stackSize: 99
   - data: {fileID: 11400000, guid: 67d31e957960d2447b59045c0809d570, type: 2}
-    stackSize: 5
+    stackSize: 99

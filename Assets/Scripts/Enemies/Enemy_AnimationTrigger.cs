@@ -25,6 +25,19 @@ public class Enemy_AnimationTrigger : MonoBehaviour
         }
     }
 
+    private void MagicAttackTrigger()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(enemy.attackCheck.position, enemy.attackCheckRadius);
+        foreach (var hit in colliders)
+        {
+            if (hit.GetComponent<Player>() != null)
+            {
+                PlayerStats _target = hit.GetComponent<PlayerStats>();
+                enemy.stats.DoMagicalDamage(_target);
+            }
+        }
+    }
+
     private void SpecialAttackTrigger() => enemy.AnimationSpecialAttackTrigger();
 
     private void OpenCounterWindow() => enemy.OpenCounterAttackWindow();

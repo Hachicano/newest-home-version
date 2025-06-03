@@ -33,7 +33,7 @@ public class DeathBringerCastController : PooledFX
             if (hit.GetComponent<Player>() != null)
             {
                 hit.GetComponent<Entity>().SetupKnockbackDir(transform);
-                founderStat.DoDamage(hit.GetComponent<CharacterStats>());
+                founderStat.DoMagicalDamage(hit.GetComponent<CharacterStats>());
             }
         }
     }

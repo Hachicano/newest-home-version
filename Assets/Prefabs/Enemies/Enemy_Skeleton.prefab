@@ -709,10 +709,10 @@ MonoBehaviour:
     baseValue: 0
     modifiers: []
   phsicalDamage:
-    baseValue: 10
+    baseValue: 15
     modifiers: []
   critChance:
-    baseValue: 0
+    baseValue: 10
     modifiers: []
   critPower:
     baseValue: 0
@@ -766,7 +766,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   possibleDropAmount: 3
   possibleDrop:
-  - {fileID: 11400000, guid: 67d31e957960d2447b59045c0809d570, type: 2}
   - {fileID: 11400000, guid: 11d0d4c890206bf4d89aed97e5038ab0, type: 2}
   dropPrefab: {fileID: 3774323107750568187, guid: 67135abaae68bb24b9911ecb09871044, type: 3}
 --- !u!1 &6982756687134325033

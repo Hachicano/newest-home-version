@@ -650,13 +650,13 @@ MonoBehaviour:
     baseValue: 0
     modifiers: []
   intelligence:
-    baseValue: 0
+    baseValue: 10
     modifiers: []
   vitality:
-    baseValue: 0
+    baseValue: 30
     modifiers: []
   phsicalDamage:
-    baseValue: 5
+    baseValue: 20
     modifiers: []
   critChance:
     baseValue: 0
@@ -680,7 +680,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: []
   iceDamage:
-    baseValue: 0
+    baseValue: 20
     modifiers: []
   shockDamage:
     baseValue: 0
@@ -747,8 +747,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e3d87272b923a04c9197565b2e7ac79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  possibleDropAmount: 0
-  possibleDrop: []
+  possibleDropAmount: 2
+  possibleDrop:
+  - {fileID: 11400000, guid: 67d31e957960d2447b59045c0809d570, type: 2}
   dropPrefab: {fileID: 3774323107750568187, guid: 67135abaae68bb24b9911ecb09871044, type: 3}
 --- !u!114 &8113532533338602376
 MonoBehaviour:

@@ -6,6 +6,13 @@ public class ItemObject : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb => GetComponent<Rigidbody2D>();
     [SerializeField] private ItemData itemData;
+    [SerializeField] private float protectPickupTime = 1.5f;
+    [SerializeField] public bool canPick;
+
+    private void OnEnable()
+    {
+        StartCoroutine("BusyFor", protectPickupTime);
+    }
 
     private void SetupVisual()
     {
@@ -41,5 +48,13 @@ public class ItemObject : MonoBehaviour
     public void resetItem()
     {
         itemData = null;
+        canPick = false;
+    }
+
+    public IEnumerator BusyFor(float _seconds)
+    {
+        yield return new WaitForSeconds(_seconds);
+
+        canPick = true;
     }
 }

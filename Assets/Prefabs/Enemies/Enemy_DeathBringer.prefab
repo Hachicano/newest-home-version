@@ -739,37 +739,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   strengeth:
-    baseValue: 0
+    baseValue: 20
     modifiers: []
   agility:
-    baseValue: 0
+    baseValue: 10
     modifiers: []
   intelligence:
-    baseValue: 0
+    baseValue: 40
     modifiers: []
   vitality:
-    baseValue: 0
+    baseValue: 30
     modifiers: []
   phsicalDamage:
-    baseValue: 50
+    baseValue: 30
     modifiers: []
   critChance:
-    baseValue: 0
+    baseValue: 20
     modifiers: []
   critPower:
-    baseValue: 0
+    baseValue: 160
     modifiers: []
   maxHealth:
-    baseValue: 2500
+    baseValue: 3000
     modifiers: []
   armor:
-    baseValue: 0
+    baseValue: 20
     modifiers: []
   evasion:
-    baseValue: 0
+    baseValue: 10
     modifiers: []
   magicResistance:
-    baseValue: 0
+    baseValue: 20
     modifiers: []
   fireDamage:
     baseValue: 0
@@ -880,18 +880,18 @@ MonoBehaviour:
   idleTime: 1
   battleTime: 7
   defaultMoveSpeed: 0
-  angerDistance: 2
-  attackDistance: 2
+  angerDistance: 10
+  attackDistance: 3
   attackCooldown: 0
-  minAttackCooldown: 0.5
-  maxAttackCooldown: 2
+  minAttackCooldown: 0.2
+  maxAttackCooldown: 1
   lastTimeAttacked: 0
   bossFightBegun: 0
   castPrefab: {fileID: 3683538653523218365, guid: e0044f7b48dc92642947bc94626cc700, type: 3}
   castStateCooldown: 10
   castOffset: {x: 2, y: 2.1}
-  amountOfCasts: 5
-  castCooldown: 1
+  amountOfCasts: 12
+  castCooldown: 0.2
   lastTimeCast: -100
   arena: {fileID: 6623033870408675871}
   surroundingCheckSize: {x: 3, y: 3}
